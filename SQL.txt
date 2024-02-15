@@ -1,0 +1,20 @@
+SELECT get_date as วันที่ลง,
+IF(get_date BETWEEN open_date AND close_date ,DATEDIFF(get_date, open_date),null) + 1 AS วันที่หลังเปิดเทอม,
+IF(get_date BETWEEN open_date AND close_date ,CEILING((DATEDIFF(get_date, open_date)+1)/7),null) AS สัปดาห์ที่หลังเปิดเทอม ,
+IF(get_date BETWEEN open_date AND close_date ,term_name,"ปิดเทอม")  as เทอม ,
+year_num as ปีการศึกษา ,
+CASE
+   	WHEN get_date BETWEEN start_mid_date AND last_mid_date  THEN TRUE
+   	ELSE null
+   	END AS เป็นสอบกลางภาค,
+CASE
+    WHEN get_date BETWEEN start_final_date AND last_final_date THEN TRUE
+    ELSE null
+	END AS เป็นสอบปลายภาค,
+CASE 
+	WHEN get_date BETWEEN open_date and last_mid_date  THEN 0
+    WHEN get_date BETWEEN last_mid_date AND close_date  THEN 1
+    ELSE null END AS "ก่อนmid:0 หลังmid:1"
+  
+FROM GetDate NATURAL JOIN OpenDate NATURAL JOIN Term NATURAL JOIN Year  
+ORDER BY `วันที่ลง` ASC;
