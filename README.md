@@ -6,4 +6,7 @@ GO TO VIEW academic_year
 วันต่าง ๆ ยึดตามนี้
 ![image](https://github.com/iristap/DW/assets/47081187/40a72998-e580-46ee-af9e-6170758aeb2e)
 
+In CSV have 
+day 2020-01-01 - 2024-12-31 
+Total 1827 day
 
